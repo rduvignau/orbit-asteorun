@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#0b1017"><title>Asteorun</title><link rel="stylesheet" href="style.css?v=16">
+  <script src="campaign.js?v=16" defer></script>
+  <script src="levels.js?v=16" defer></script>
+  <script src="arsenal.js?v=16" defer></script>
+  <script src="defense.js?v=16" defer></script>
+  <script src="audio.js?v=16" defer></script>
+  <script src="terrain.js?v=16" defer></script>
+  <script src="foundry.js?v=16" defer></script>
+  <script src="meridian.js?v=16" defer></script>
+  <script src="verdant.js?v=16" defer></script>
+  <script src="verdant-combat.js?v=16" defer></script>
+  <script src="abyss.js?v=16" defer></script>
+  <script src="observatory.js?v=16" defer></script>
+  <script src="finale.js?v=16" defer></script>
+  <script src="theatre.js?v=16" defer></script>
+  <script src="scores.js?v=16" defer></script>
+  <script src="ui.js?v=16" defer></script>
+  <script src="game.js?v=16" defer></script>
+</head><body>
+<main class="app" data-level="1">
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="Asteorun title screen"><span class="brand-icon">✳</span><span>ASTEORUN<small>FINAL FLIGHT / 008</small></span></a>
+    <div class="heading"><p class="eyebrow">AN EIGHT-WORLD ARCADE ODYSSEY</p><h1>Asteorun<span>.</span></h1><p class="subtitle">A little ship. A very long way home.</p></div>
+    <div class="audio-controls"><button id="music" class="music-button" aria-pressed="true" aria-label="Mute music">♫ <span id="music-label">MUSIC ON</span></button><button id="sfx" class="sfx-button" aria-pressed="true" aria-label="Mute combat sound effects">SFX ON</button><input id="volume" type="range" min="0" max="100" value="40" aria-label="Music volume" title="Music volume (effects have a separate control)"><details class="audio-settings"><summary aria-label="Sound settings" title="Sound settings">⚙</summary><div class="audio-popover"><strong>SOUND SETTINGS</strong><label for="effects-volume">Effects volume <output id="effects-value">50%</output></label><input id="effects-volume" type="range" min="0" max="100" value="50" aria-label="Sound effects volume"><select id="test-cue" aria-label="Sound effect to test"><option value="shoot">Laser shot</option><option value="impact">Projectile impact</option><option value="explode">Target explosion</option><option value="checkpoint">Checkpoint saved</option><option value="hurt">Hull hit</option><option value="destroy">Ship destruction</option></select><button id="test-sfx" type="button">Test SFX ↗</button><p id="audio-result" role="status" aria-live="polite">Preview the soft impact and “brooosch” explosion before launching.</p><small>The top slider adjusts music only. Effects and music have independent volume controls.</small></div></details></div>
+  </header>
+  <section id="front-screen" class="front-screen" aria-label="Choose your difficulty">
+    <div class="menu-universe" aria-hidden="true"><svg class="menu-aurora" viewBox="0 0 1200 700" preserveAspectRatio="none"><defs><linearGradient id="aurora-light"><stop stop-color="#72efcc" stop-opacity="0"/><stop offset=".35" stop-color="#72efcc"/><stop offset=".7" stop-color="#a399ef"/><stop offset="1" stop-color="#f7c78b" stop-opacity="0"/></linearGradient></defs><g fill="none" stroke="url(#aurora-light)"><path d="M-100 350 C180 30 250 560 580 230 S980 460 1300 80"/><path d="M-100 380 C180 60 250 590 580 260 S980 490 1300 110"/><path d="M-100 405 C180 85 250 615 580 285 S980 515 1300 135"/></g></svg><div class="menu-sun"></div><div class="menu-orbit orbit-one"></div><div class="menu-orbit orbit-two"></div><div class="menu-orbit orbit-three"></div><div class="menu-ship">➤</div><span class="menu-star s1">✦</span><span class="menu-star s2">✧</span><span class="menu-star s3">✦</span></div>
+    <div class="menu-heading"><p class="eyebrow">EIGHT WORLDS. ONE LITTLE SHIP.</p><h2>Asteorun<span>.</span></h2><p class="menu-subtitle">A long way home</p></div>
+    <div class="difficulty-grid" role="group" aria-label="Starting difficulty">
+      <button id="difficulty-veryeasy" class="difficulty-card" aria-pressed="false"><span>00 / STARGAZER</span><strong>Very Easy</strong><small>7 hearts · max 10 · 10 continues</small><b>0.5× SCORE</b></button>
+      <button id="difficulty-easy" class="difficulty-card" aria-pressed="false"><span>01 / EXPLORER</span><strong>Easy</strong><small>5 hearts · max 7 · 5 continues</small><b>0.75× SCORE</b></button>
+      <button id="difficulty-normal" class="difficulty-card selected" aria-pressed="true"><span>02 / PILOT</span><strong>Normal</strong><small>3 hearts · max 5 · 3 continues</small><b>1× SCORE</b></button>
+      <button id="difficulty-hard" class="difficulty-card" aria-pressed="false"><span>03 / ACE</span><strong>Hard</strong><small>2 hearts · max 5 · 2 continues</small><b>1.5× SCORE</b></button>
+      <button id="difficulty-hardcore" class="difficulty-card" aria-pressed="false" disabled><span>04 / THE LAST SHIP</span><strong>Hardcore</strong><small>1 heart · max 4 · 1 continue</small><b class="difficulty-lock">LOCKED · FINISH HARD</b></button>
+    </div>
+    <p id="launch-description" class="launch-description">3 starting hearts · 3 on respawn · 5 maximum hearts · 3 continues · 1× points</p>
+    <div class="menu-actions"><button id="begin-run" class="primary">Begin expedition <span>↗</span></button><button id="show-board" class="secondary">Top ten pilots <span>☆</span></button></div>
+    <p class="menu-controls">ARROWS / WASD TO STEER · SPACE TO FIRE · TOUCH CONTROLS ON MOBILE</p>
+  </section>
+  <section class="game-shell" aria-label="Asteorun game" hidden>
+    <div class="hud">
+      <div class="stats"><div><span>SCORE</span><strong id="score">00000</strong></div><div class="best"><span>BEST</span><strong id="best">00000</strong></div><div class="hull"><span>HULL</span><strong id="lives" aria-label="3 of 5 lives">♥ ♥ ♥ ♡ ♡</strong></div></div>
+      <div class="mission"><span>MISSION 001</span><strong>The Shattered Passage</strong><span>LEVEL 01 / BELT / SENTINEL</span></div>
+      <div class="continues-hud"><span>CONTINUES</span><strong id="continues" aria-label="3 continues remaining"></strong></div>
+      <div class="hud-actions"><button id="hud-board" class="icon-button" aria-label="High scores" title="Top ten">☆</button><button id="fullscreen" class="icon-button" aria-label="Enter fullscreen" title="Fullscreen (F)">⛶</button><button id="pause" class="icon-button" aria-label="Pause game" title="Pause (P)" disabled>Ⅱ</button></div>
+    </div>
+      <div class="systems-bar" aria-label="Weapon charge"><div id="loadout-pulse"><span id="reserve-pulse">1 PULSE · ∞</span><div><i id="charge-pulse"></i></div></div><div id="loadout-twin"><span id="reserve-twin">2 TWIN · LOST</span><div><i id="charge-twin"></i></div></div><div id="loadout-trident"><span id="reserve-trident">3 TRIDENT · LOST</span><div><i id="charge-trident"></i></div></div><div id="loadout-compass"><span id="reserve-compass">4 COMPASS · LOST</span><div><i id="charge-compass"></i></div></div><div id="loadout-halo"><span id="reserve-halo">5 HALO · LOST</span><div><i id="charge-halo"></i></div></div></div>
+
+    <div class="level-strip"><span id="stage">01 / THE APPROACH</span><div class="progress-track"><div id="progress"></div></div><span id="speed">1.00×</span><span id="time">00:00</span></div>
+    <div class="playfield" id="playfield">
+      <canvas id="game" aria-label="Move with arrows or WASD. Hold Space to fire. E or Shift activates Aegis from level 4. Q or 1–5 switches weapons. Drag to steer on mobile, with separate fire and shield buttons." tabindex="0"></canvas>
+      <div class="sector" hidden></div><div class="flight-label" hidden><span id="flight-status"></span></div>
+      <div id="announcement" class="announcement" role="status" aria-live="polite"></div>
+      <div id="boss-hud" class="boss-hud" hidden><span><span id="boss-name"></span><b id="boss-phase"></b></span><div><i id="boss-health"></i></div></div>
+      <button id="shield" class="shield-button" aria-label="Aegis shield" disabled><span>⬡</span><b>SHIELD</b><small id="shield-label">SOON</small></button>
+      <button id="fire" class="fire-button" aria-label="Hold to fire" disabled><span>⌖</span> FIRE</button>
+      <div id="transmission" class="transmission" hidden><p class="eyebrow">INCOMING TRANSMISSION</p><p id="transmission-text"></p><small>ENTER OR SPACE TO LAUNCH EARLY</small></div>
+      <div id="cinema-controls" class="cinema-controls" hidden><button id="end-credits" class="secondary">Continue to results ↗</button></div>
+      <div class="overlay hidden" id="overlay"><div class="overlay-inner"><div class="orbit-mark" aria-hidden="true"><span>✦</span></div><p class="eyebrow" id="overlay-label"></p><h2 id="overlay-title"></h2><p id="overlay-copy"></p><button id="start" class="primary">Continue <span>↗</span></button><p class="start-hint" id="start-hint"></p><button id="return-title" class="text-button">Back to main menu</button></div></div>
+    </div>
+    <div class="controlbar"><div class="desktop-help"><span class="keys">↑ ↓ ← →</span><span>or <b>W A S D</b> to move</span></div><div class="touch-help"><span class="touch-icon">◎</span> Drag to steer</div><div class="collision-note"><kbd>SPACE</kbd> hold to fire</div><button id="weapon" class="weapon-button" disabled aria-label="Weapon: Pulse"><span id="weapon-name">PULSE</span><span id="weapon-hint">∞</span></button><div class="pause-help"><kbd>P</kbd> pause · <kbd>F</kbd> fullscreen</div></div>
+  </section>
+  <dialog id="score-dialog" class="score-dialog" aria-labelledby="board-title"><div class="board-heading"><p class="eyebrow">ASTEORUN / FLIGHT RECORDS</p><h2 id="board-title">THE FLIGHT ARCHIVE</h2><p id="board-summary"></p></div><div class="score-scroll"><table><thead><tr><th>#</th><th>PILOT</th><th>SCORE</th><th>LVL</th><th>MODE</th></tr></thead><tbody id="score-rows"></tbody></table><p id="empty-board">The stars are quiet. Be the first name in the archive.</p></div><p id="board-status" role="status" aria-live="polite"></p><form id="score-form" hidden><label for="pilot-name">YOUR PILOT NAME</label><div><input id="pilot-name" name="name" maxlength="16" required autocomplete="nickname" placeholder="1–16 characters"><button id="score-submit" class="primary" type="submit">Sign the stars ↗</button></div></form><div class="board-actions"><button id="score-retry" class="secondary" hidden>Retry connection</button><button id="board-close" class="secondary">Back</button></div></dialog>
+<footer class="credits" aria-label="Game credits">Romaric Duvignau (10000 characters) + ChatGPT Codex Sol 6.1 Medium (the rest)</footer>
+</main>
+</body></html>
